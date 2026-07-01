@@ -1,26 +1,43 @@
-# Códigos SupaBase
+# Códigos SQL para Supabase
+
+Este repositório reúne atividades de banco de dados relacional desenvolvidas em SQL e adaptadas para uso no **Supabase**, que utiliza **PostgreSQL** como banco de dados.
+
+O objetivo é demonstrar a criação de tabelas, chaves primárias, chaves estrangeiras, relacionamentos, validações, inserção de dados e consultas com `JOIN`.
 
 ## Objetivo do projeto
 
-O objetivo principal é mostrar como um banco de dados relacional pode organizar informações de forma estruturada, evitando repetição de dados e permitindo ligações entre diferentes tabelas.
+O projeto foi criado para praticar conceitos fundamentais de banco de dados, como:
 
-Neste projeto, foram usados exemplos relacionados a:
+- criação de tabelas com `CREATE TABLE`;
+- uso de chaves primárias e estrangeiras;
+- relacionamento entre tabelas;
+- validações com `CHECK`;
+- restrições com `UNIQUE` e `NOT NULL`;
+- inserção de dados com `INSERT INTO`;
+- consultas simples e consultas com `INNER JOIN`;
+- formatação de datas e valores monetários;
+- uso de views, funções, triggers e políticas de segurança em modelos mais avançados.
 
-- Copa do Mundo de 2026;
-- sistema escolar com alunos, turmas, disciplinas, notas e matrículas;
-- modelo mais completo de banco escolar para Supabase;
-- exemplo de banco sobre inteligência artificial e infraestrutura;
-- limpeza completa do schema `public` no Supabase.
+## Tecnologias utilizadas
+
+- SQL
+- PostgreSQL
+- Supabase
+- GitHub
 
 ## Estrutura dos arquivos
 
 ```txt
-Relacionamento-tabela-Supabase-main/
+Codigos-Supabase-main/
 ├── DeleteAll.sql
 ├── SQL basic.sql
 ├── TabelaEscolaSimples.sql
 ├── TabelaEscolaCOMP.sql
 ├── TabelaIA.sql
+├── controle_estoque_produtos.sql
+├── sistema_clinica_medica.sql
+├── sistema_locacao_veiculos.sql
+├── sistema_pedidos_clientes_produtos.sql
 ├── LICENSE
 └── README.md
 ```
@@ -31,25 +48,88 @@ Relacionamento-tabela-Supabase-main/
 
 Arquivo introdutório com uma tabela simples chamada `copa_2026`.
 
-Ele demonstra conceitos básicos como:
+Esse script apresenta conceitos básicos de SQL, como:
 
 - criação de tabela;
 - chave primária;
-- tipo `TEXT`;
-- tipo `INT`;
-- tipo `VARCHAR`;
-- valor padrão com `DEFAULT`.
+- campos obrigatórios;
+- uso de `TEXT`, `INT` e `VARCHAR`;
+- comentários explicativos sobre chave primária, chave estrangeira e `VARCHAR`.
 
-Exemplo de campos usados:
+É o arquivo mais simples do projeto e serve como introdução aos comandos básicos de banco de dados.
 
-```sql
-id_copa
-pais
-pontuacao
-artilheiro
+---
+
+### `sistema_pedidos_clientes_produtos.sql`
+
+Modelo de banco para um sistema de pedidos.
+
+O script organiza informações sobre clientes, produtos, pedidos e itens de pedido.
+
+Principais tabelas:
+
+```txt
+clientes
+produtos
+pedidos
+itens_pedido
 ```
 
-Esse arquivo é indicado para entender a base do comando `CREATE TABLE`.
+Principais relacionamentos:
+
+- um cliente pode fazer vários pedidos;
+- um pedido pertence a um cliente;
+- um pedido pode ter vários itens;
+- cada item de pedido está ligado a um produto.
+
+O arquivo também inclui consultas para exibir CPF, telefone, datas e valores formatados.
+
+---
+
+### `sistema_locacao_veiculos.sql`
+
+Modelo de banco para um sistema de locação de veículos.
+
+O script armazena dados de clientes, veículos e locações.
+
+Principais tabelas:
+
+```txt
+clientes
+veiculos
+locacoes
+```
+
+Principais relacionamentos:
+
+- um cliente pode realizar várias locações;
+- um veículo pode aparecer em várias locações ao longo do tempo;
+- cada locação pertence a um cliente e a um veículo.
+
+O arquivo possui validações para CPF, placa, datas, valor da diária, valor total e status da locação.
+
+---
+
+### `controle_estoque_produtos.sql`
+
+Modelo simples para controle de estoque.
+
+O script cria uma tabela para armazenar produtos, quantidade disponível e preço.
+
+Principal tabela:
+
+```txt
+estoque_produtos
+```
+
+Esse arquivo demonstra:
+
+- criação de tabela simples;
+- ID gerado automaticamente;
+- validação de nome vazio;
+- validação de quantidade negativa;
+- validação de preço negativo;
+- consulta com preço formatado em reais.
 
 ---
 
@@ -57,7 +137,7 @@ Esse arquivo é indicado para entender a base do comando `CREATE TABLE`.
 
 Modelo escolar simplificado para Supabase.
 
-Esse script cria tabelas para representar uma escola com alunos, turmas, disciplinas, matrículas e notas.
+Esse script representa uma estrutura básica de escola, com alunos, turmas, disciplinas, matrículas e notas.
 
 Principais tabelas:
 
@@ -81,10 +161,10 @@ Principais relacionamentos:
 O script também possui:
 
 - dados fictícios;
-- constraints de validação;
-- Row Level Security no Supabase;
-- policies de leitura para usuários autenticados;
-- views para consulta dos dados.
+- validações com `CHECK`;
+- views para consulta;
+- Row Level Security;
+- políticas de leitura para usuários autenticados.
 
 Views criadas:
 
@@ -102,52 +182,53 @@ vw_resumo_disciplinas
 
 Modelo escolar completo e mais avançado.
 
-Esse arquivo representa uma versão mais robusta de um banco escolar, com maior organização e regras mais próximas de um sistema real.
+Esse arquivo representa uma versão mais robusta de um banco de dados escolar, com estrutura mais próxima de um sistema real.
 
-Ele inclui tabelas como:
+Ele inclui tabelas para:
 
-```txt
-cidades
-escolas
-cursos
-series_escolares
-turnos
-turmas
-disciplinas
-turma_disciplinas
-trimestres
-indicadores_avaliacao
-estudantes
-matriculas
-registros_notas
-observacoes_estudantis
-```
+- cidades;
+- escolas;
+- cursos;
+- séries escolares;
+- turnos;
+- turmas;
+- disciplinas;
+- trimestres;
+- estudantes;
+- matrículas;
+- registros de notas;
+- observações estudantis;
+- ocorrências;
+- componentes de avaliação;
+- perfis de usuários.
 
 Também possui recursos mais avançados, como:
 
 - tipos `ENUM`;
 - validações com `CHECK`;
-- funções SQL;
+- funções em PostgreSQL;
 - triggers;
 - views de resumo;
-- controle de permissões;
 - políticas de segurança;
-- estrutura para perfis de usuário;
-- controle de observações e ocorrências estudantis.
+- controle de perfis de usuário;
+- organização de observações e ocorrências estudantis.
 
-Esse arquivo é indicado para demonstrar um banco de dados escolar mais completo, organizado e próximo de um sistema real.
+Esse é o arquivo mais completo do projeto na área escolar.
 
 ---
 
 ### `TabelaIA.sql`
 
-Modelo de banco de dados sobre inteligência artificial, empresas, modelos de IA, infraestrutura, uso de energia, água e custos.
+Modelo de banco de dados sobre inteligência artificial e infraestrutura.
+
+O script organiza dados relacionados a empresas, modelos de IA, países, idiomas, infraestrutura, energia, água e custos.
 
 Principais tabelas:
 
 ```txt
 paises
 idiomas
+pais_idiomas
 localidades
 empresas
 modelos_ia
@@ -158,22 +239,59 @@ ambiental
 custos
 ```
 
-Esse script demonstra relacionamentos mais amplos, incluindo tabelas intermediárias para relações muitos-para-muitos.
+Esse arquivo demonstra relacionamentos mais amplos, incluindo relações muitos-para-muitos.
 
-Exemplos:
+Exemplos de relacionamentos:
 
 - um país pode ter vários idiomas;
 - uma implantação de IA pode usar vários modelos;
 - uma implantação pode envolver várias empresas;
-- uma infraestrutura pode usar várias fontes de energia.
+- uma infraestrutura pode utilizar várias fontes de energia.
+
+O script também utiliza `ENUM`, funções, triggers, views e políticas de segurança.
+
+---
+
+### `sistema_clinica_medica.sql`
+
+Modelo de banco para uma clínica médica.
+
+O script organiza informações sobre pacientes, médicos, convênios, especialidades, consultas, prontuários e pagamentos.
+
+Principais tabelas:
+
+```txt
+pacientes
+medicos
+convenios
+paciente_convenios
+especialidades
+medico_especialidades
+tipos_atendimento
+salas
+horarios_medicos
+consultas
+prontuarios
+pagamentos
+```
+
+Principais relacionamentos:
+
+- um paciente pode ter convênios;
+- um médico pode ter especialidades;
+- uma consulta liga paciente, médico, especialidade, sala e tipo de atendimento;
+- uma consulta pode gerar prontuário;
+- uma consulta pode ter pagamentos registrados.
+
+O arquivo também possui funções e triggers para validar regras, como conflito de horário, paciente inativo, médico inativo e pagamento maior que o valor da consulta.
 
 ---
 
 ### `DeleteAll.sql`
 
-Script de limpeza completa do schema `public`.
+Script de limpeza completa do schema `public` no Supabase.
 
-Ele remove:
+Ele remove objetos como:
 
 - tabelas;
 - views;
@@ -182,9 +300,7 @@ Ele remove:
 - tipos personalizados;
 - enums.
 
-> **Atenção:** esse arquivo apaga objetos do banco. Use apenas em ambiente de teste ou quando tiver certeza de que deseja limpar o schema `public`.
-
----
+> Atenção: esse arquivo apaga objetos do banco. Use apenas em ambiente de teste ou quando tiver certeza de que deseja limpar o schema `public`.
 
 ## Como executar no Supabase
 
@@ -196,20 +312,43 @@ Ele remove:
 6. Cole no editor.
 7. Execute o script.
 
-Para começar, recomenda-se executar primeiro:
-
-```txt
-TabelaEscolaSimples.sql
-```
-
-Esse arquivo é mais direto e mais fácil de entender para apresentação escolar.
-
-## Ordem recomendada para estudo
+## Ordem recomendada para estudar
 
 ```txt
 1. SQL basic.sql
-2. TabelaEscolaSimples.sql
-3. TabelaEscolaCOMP.sql
-4. TabelaIA.sql
-5. DeleteAll.sql somente se precisar limpar o banco
+2. controle_estoque_produtos.sql
+3. sistema_pedidos_clientes_produtos.sql
+4. sistema_locacao_veiculos.sql
+5. sistema_clinica_medica.sql
+6. TabelaEscolaSimples.sql
+7. TabelaEscolaCOMP.sql
+8. TabelaIA.sql
+9. DeleteAll.sql somente se precisar limpar o banco
 ```
+
+## Observações importantes
+
+- Os scripts foram pensados para **Supabase/PostgreSQL**.
+- Alguns arquivos usam recursos mais avançados, como `ENUM`, `VIEW`, `FUNCTION`, `TRIGGER` e Row Level Security.
+- Para testar sem risco, o ideal é usar um projeto novo no Supabase.
+- O arquivo `DeleteAll.sql` deve ser usado com cuidado, pois remove objetos do schema `public`.
+- Os dados inseridos nos scripts são fictícios e servem apenas para teste e demonstração.
+
+## Conceitos praticados
+
+- Banco de dados relacional
+- Normalização de dados
+- Chave primária
+- Chave estrangeira
+- Relacionamento 1:N
+- Relacionamento N:N
+- Validações com `CHECK`
+- Consultas com `JOIN`
+- Views
+- Triggers
+- Funções SQL
+- Segurança com Row Level Security
+
+## Status do projeto
+
+Projeto organizado para fins de estudo, prática e apresentação de atividades SQL usando Supabase.
